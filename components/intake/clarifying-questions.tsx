@@ -15,7 +15,12 @@ export function ClarifyingQuestions() {
     sessionStatus,
   } = useReviewContext();
 
-  if (clarifyingQuestions.length === 0 && !questionsLoading) return null;
+  // Only hide entirely before the user has submitted the intake form.
+  // Once `intake` is set (user clicked "Generate Clarifying Questions"),
+  // always show this component — with skeletons while loading, with questions
+  // if they arrived, or with a fallback "Begin Panel Review" button if the
+  // clarify step failed / returned no questions.
+  if (!intake && clarifyingQuestions.length === 0 && !questionsLoading) return null;
 
   const buildAnswers = (): ClarifyingAnswer[] =>
     clarifyingQuestions.map((q) => ({
@@ -48,6 +53,12 @@ export function ClarifyingQuestions() {
               <div className="h-16 w-full bg-bg rounded-md" />
             </div>
           ))}
+        </div>
+      ) : clarifyingQuestions.length === 0 ? (
+        <div className="rounded-lg border border-border bg-surface p-4 text-sm text-muted">
+          No clarifying questions were generated. You can proceed directly to the
+          panel review — the assessors will evaluate the system based on the intake
+          you provided.
         </div>
       ) : (
         <div className="space-y-3">

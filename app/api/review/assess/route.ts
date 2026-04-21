@@ -8,6 +8,7 @@ import {
   buildSynthesisUserMessage,
 } from "@/lib/prompt-builder";
 import { ASSESSMENT_MODEL } from "@/lib/constants";
+import { extractJson } from "@/lib/json-extract";
 import type {
   AISystemIntake,
   ClarifyingAnswer,
@@ -15,6 +16,7 @@ import type {
   Finding,
   LoadedPersona,
   PersonaAssessment,
+  PrioritizedRecommendation,
   ReviewSessionEvent,
   RiskLevel,
   RiskReport,
@@ -199,7 +201,18 @@ function runFullAssessment(
 
         const synthesisText =
           synthesisResponse.content.find((b) => b.type === "text")?.text ?? "{}";
-        const synthesisData = JSON.parse(synthesisText.trim());
+        let synthesisData: {
+          overallRisk?: RiskLevel;
+          dimensionRisks?: Record<string, RiskLevel>;
+          crossDimensionalIssues?: string[];
+          executiveSummary?: string;
+          prioritizedRecommendations?: PrioritizedRecommendation[];
+        } = {};
+        try {
+          synthesisData = extractJson(synthesisText);
+        } catch (err) {
+          console.error("[assess] synthesis JSON parse failed:", err);
+        }
 
         const allFindings: Finding[] = completedAssessments.flatMap((a) => a.findings);
 
@@ -248,32 +261,30 @@ function parsePersonaAssessment(
   const match = fullText.match(/<assessment_data>([\s\S]*?)<\/assessment_data>/);
   if (match) {
     try {
-      const data = JSON.parse(match[1].trim());
+      const data = extractJson<{
+        overallDimensionRisk?: RiskLevel;
+        findings?: Array<{
+          title: string;
+          riskLevel: RiskLevel;
+          description: string;
+          guidelineReference: string;
+          recommendation: string;
+          suggestedOwner: string;
+        }>;
+      }>(match[1]);
       overallDimensionRisk = data.overallDimensionRisk ?? "Medium";
-      findings = (data.findings ?? []).map(
-        (
-          f: {
-            title: string;
-            riskLevel: RiskLevel;
-            description: string;
-            guidelineReference: string;
-            recommendation: string;
-            suggestedOwner: string;
-          },
-          i: number
-        ) => ({
-          id: `${persona.id}-${i}`,
-          dimension: persona.panel_role.dimension,
-          riskLevel: f.riskLevel ?? "Medium",
-          title: f.title ?? "",
-          description: f.description ?? "",
-          guidelineReference: f.guidelineReference ?? "",
-          recommendation: f.recommendation ?? "",
-          suggestedOwner: f.suggestedOwner ?? "",
-        })
-      );
-    } catch {
-      // JSON parse failed — leave defaults
+      findings = (data.findings ?? []).map((f, i) => ({
+        id: `${persona.id}-${i}`,
+        dimension: persona.panel_role.dimension,
+        riskLevel: f.riskLevel ?? "Medium",
+        title: f.title ?? "",
+        description: f.description ?? "",
+        guidelineReference: f.guidelineReference ?? "",
+        recommendation: f.recommendation ?? "",
+        suggestedOwner: f.suggestedOwner ?? "",
+      }));
+    } catch (err) {
+      console.error(`[assess] parsePersonaAssessment(${persona.id}) failed:`, err);
     }
   }
 
@@ -293,8 +304,9 @@ function parseExaminationData(text: string): CrossChallenge[] {
   const match = text.match(/<examination_data>([\s\S]*?)<\/examination_data>/);
   if (!match) return [];
   try {
-    return JSON.parse(match[1].trim());
-  } catch {
+    return extractJson<CrossChallenge[]>(match[1]);
+  } catch (err) {
+    console.error("[assess] parseExaminationData failed:", err);
     return [];
   }
 }

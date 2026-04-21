@@ -1,6 +1,7 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { NextResponse } from "next/server";
 import { INTAKE_MODEL } from "@/lib/constants";
+import { extractJson } from "@/lib/json-extract";
 import type { ClarifyingQuestion, RiskDimension } from "@/lib/types";
 
 const client = new Anthropic();
@@ -52,10 +53,12 @@ Ask 5 questions. Each must target a different dimension. Be specific to this sys
     });
 
     const text = response.content.find((b) => b.type === "text")?.text ?? "{}";
-    const parsed = JSON.parse(text.trim());
+    const parsed = extractJson<{
+      questions?: Array<{ id?: string; question: string; dimension: RiskDimension }>;
+    }>(text);
 
     const questions: ClarifyingQuestion[] = (parsed.questions ?? []).map(
-      (q: { id: string; question: string; dimension: RiskDimension }, i: number) => ({
+      (q, i) => ({
         id: q.id ?? `q${i + 1}`,
         question: q.question,
         dimension: q.dimension,
@@ -63,7 +66,8 @@ Ask 5 questions. Each must target a different dimension. Be specific to this sys
     );
 
     return NextResponse.json({ questions });
-  } catch {
+  } catch (err) {
+    console.error("[clarify] failed:", err);
     return NextResponse.json({ questions: [] });
   }
 }
