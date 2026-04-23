@@ -87,7 +87,6 @@ function runFullAssessment(
           const stream = anthropic.messages.stream({
             model: ASSESSMENT_MODEL,
             max_tokens: 3000,
-            temperature: 0.7,
             system: systemPrompt,
             messages: [{ role: "user", content: userMessage }],
           });
@@ -131,7 +130,6 @@ function runFullAssessment(
         const examinationStream = anthropic.messages.stream({
           model: ASSESSMENT_MODEL,
           max_tokens: 2000,
-          temperature: 0.5,
           system: buildExaminationSystemPrompt(),
           messages: [
             {
@@ -195,7 +193,6 @@ function runFullAssessment(
         const synthesisResponse = await anthropic.messages.create({
           model: ASSESSMENT_MODEL,
           max_tokens: 3000,
-          temperature: 0.2,
           messages: [{ role: "user", content: synthesisMessage }],
         });
 
