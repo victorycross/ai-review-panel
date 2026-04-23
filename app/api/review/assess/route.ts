@@ -22,7 +22,7 @@ import type {
   RiskReport,
 } from "@/lib/types";
 
-export const maxDuration = 300;
+export const maxDuration = 800;
 
 export async function POST(request: Request) {
   const keyError = checkApiKey();
