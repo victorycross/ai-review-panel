@@ -380,14 +380,20 @@ const styles = StyleSheet.create({
   // TOC
   tocItem: {
     flexDirection: "row",
-    alignItems: "flex-end",
-    marginBottom: 6,
-    paddingBottom: 4,
+    alignItems: "flex-start",
+    marginBottom: 10,
+    paddingBottom: 6,
     borderBottom: `0.3 solid ${color.ruleSoft}`,
   },
-  tocNum: { fontSize: 10, color: color.muted, width: 24 },
-  tocLabel: { fontSize: 11, color: color.ink, flex: 1 },
-  tocNote: { fontSize: 9, color: color.subtle },
+  tocNum: { fontSize: 10, color: color.muted, width: 24, paddingTop: 1 },
+  tocCol: { flex: 1, flexDirection: "column" },
+  tocLabel: {
+    fontSize: 11,
+    fontFamily: "Helvetica-Bold",
+    color: color.ink,
+    marginBottom: 3,
+  },
+  tocNote: { fontSize: 9, color: color.muted, lineHeight: 1.4 },
   // Persona page header strip
   personaStrip: {
     flexDirection: "row",
@@ -583,9 +589,9 @@ export function ReportPdfDocument({ report }: Props) {
         <Text style={styles.pageTitle}>Contents</Text>
         <View style={styles.pageRule} />
         {tocSections.map((s) => (
-          <View key={s.num} style={styles.tocItem}>
+          <View key={s.num} style={styles.tocItem} wrap={false}>
             <Text style={styles.tocNum}>{s.num}.</Text>
-            <View style={{ flex: 1 }}>
+            <View style={styles.tocCol}>
               <Text style={styles.tocLabel}>{s.label}</Text>
               {s.note && <Text style={styles.tocNote}>{s.note}</Text>}
             </View>
