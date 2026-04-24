@@ -102,14 +102,14 @@ export function PanelStream() {
           <div className="rounded-lg border border-border bg-surface p-5 space-y-4 animate-fade-in">
             <div className="flex items-center gap-2">
               <div className="w-1 h-4 rounded-full bg-accent" />
-              <p className="text-sm font-semibold text-neutral-100">
+              <p className="text-sm font-semibold text-ink">
                 Cross-Dimensional Examination
               </p>
               {sessionStatus === "examining" && (
                 <span className="text-xs text-muted animate-pulse">Analysing…</span>
               )}
             </div>
-            <p className="text-sm text-neutral-400 streaming-text leading-relaxed">
+            <p className="text-sm text-slate-600 streaming-text leading-relaxed">
               {examinationText}
               {sessionStatus === "examining" && (
                 <span className="animate-blink">▋</span>
@@ -122,10 +122,10 @@ export function PanelStream() {
                 </p>
                 {challenges.map((c, i) => (
                   <div key={i} className="space-y-1">
-                    <p className="text-xs text-neutral-300 font-medium">
+                    <p className="text-xs text-slate-700 font-medium">
                       {c.challengingPersona} → {c.targetPersona}
                     </p>
-                    <p className="text-xs text-neutral-400">{c.issue}</p>
+                    <p className="text-xs text-slate-600">{c.issue}</p>
                     {c.response && (
                       <p className="text-xs text-muted italic">{c.response}</p>
                     )}
@@ -163,7 +163,7 @@ export function PanelStream() {
                   className="w-2 h-2 rounded-full"
                   style={{ backgroundColor: a.color }}
                 />
-                <span className="text-xs text-neutral-400">{a.dimension}</span>
+                <span className="text-xs text-slate-600">{a.dimension}</span>
                 <RiskBadge level={a.overallDimensionRisk} size="sm" />
               </div>
             ))}

@@ -22,7 +22,7 @@ export function LoginForm() {
     if (error) {
       setError(error.message);
     } else {
-      router.push("/history");
+      router.push("/home");
       router.refresh();
     }
     setLoading(false);
@@ -51,9 +51,9 @@ export function LoginForm() {
     return (
       <div className="rounded-lg border border-border bg-surface p-6 text-center space-y-3">
         <div className="text-2xl">✉️</div>
-        <p className="text-sm text-neutral-200 font-medium">Check your email</p>
+        <p className="text-sm text-slate-800 font-medium">Check your email</p>
         <p className="text-xs text-muted">
-          We sent a sign-in link to <span className="text-neutral-300">{email}</span>.
+          We sent a sign-in link to <span className="text-slate-700">{email}</span>.
           Click it to access techassist.
         </p>
         <button
@@ -82,7 +82,7 @@ export function LoginForm() {
             onChange={(e) => setEmail(e.target.value)}
             required
             placeholder="you@brightpathtechnology.io"
-            className="w-full rounded-md border border-border bg-bg px-3 py-2.5 text-sm text-neutral-200 placeholder-muted focus:outline-none focus:ring-1 focus:ring-accent"
+            className="w-full rounded-md border border-border bg-bg px-3 py-2.5 text-sm text-slate-800 placeholder-muted focus:outline-none focus:ring-1 focus:ring-accent"
           />
         </div>
 
@@ -97,7 +97,7 @@ export function LoginForm() {
               onChange={(e) => setPassword(e.target.value)}
               required
               placeholder="••••••••"
-              className="w-full rounded-md border border-border bg-bg px-3 py-2.5 text-sm text-neutral-200 placeholder-muted focus:outline-none focus:ring-1 focus:ring-accent"
+              className="w-full rounded-md border border-border bg-bg px-3 py-2.5 text-sm text-slate-800 placeholder-muted focus:outline-none focus:ring-1 focus:ring-accent"
             />
           </div>
         )}
@@ -134,7 +134,7 @@ export function LoginForm() {
         onClick={() =>
           setMode((m) => (m === "password" ? "magic-link" : "password"))
         }
-        className="w-full rounded-md border border-border bg-transparent hover:bg-surface-2 px-4 py-2.5 text-sm text-neutral-300 transition-colors"
+        className="w-full rounded-md border border-border bg-transparent hover:bg-surface-2 px-4 py-2.5 text-sm text-slate-700 transition-colors"
       >
         {mode === "password" ? "Sign in with email link" : "Sign in with password"}
       </button>

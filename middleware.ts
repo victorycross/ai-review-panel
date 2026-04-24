@@ -26,22 +26,23 @@ export async function middleware(request: NextRequest) {
     }
   );
 
-  // Refresh session — must not use getSession() here; getUser() validates with server
   const {
     data: { user },
   } = await supabase.auth.getUser();
 
-  const isAuthPath = request.nextUrl.pathname.startsWith("/auth");
+  const pathname = request.nextUrl.pathname;
+  const isAuthPath = pathname.startsWith("/auth");
+  const isLanding = pathname === "/";
 
-  if (!user && !isAuthPath) {
+  if (!user && !isAuthPath && !isLanding) {
     const url = request.nextUrl.clone();
     url.pathname = "/auth/login";
     return NextResponse.redirect(url);
   }
 
-  if (user && request.nextUrl.pathname === "/auth/login") {
+  if (user && pathname === "/auth/login") {
     const url = request.nextUrl.clone();
-    url.pathname = "/history";
+    url.pathname = "/home";
     return NextResponse.redirect(url);
   }
 

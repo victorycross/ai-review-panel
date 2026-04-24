@@ -17,7 +17,7 @@ export function ExecutiveSummary({ report }: ExecutiveSummaryProps) {
       {/* Header */}
       <div className="flex items-start justify-between gap-4 flex-wrap">
         <div className="space-y-0.5">
-          <h1 className="text-xl font-bold text-neutral-100 tracking-tight">
+          <h1 className="text-xl font-bold text-ink tracking-tight">
             {report.systemName}
           </h1>
           <p className="text-sm text-muted">
@@ -35,7 +35,7 @@ export function ExecutiveSummary({ report }: ExecutiveSummaryProps) {
         <p className="text-xs font-semibold text-muted uppercase tracking-widest">
           Executive Summary
         </p>
-        <div className="text-sm text-neutral-300 leading-relaxed space-y-3">
+        <div className="text-sm text-slate-700 leading-relaxed space-y-3">
           {report.executiveSummary.split("\n\n").map((para, i) => (
             <p key={i}>{para}</p>
           ))}
@@ -68,16 +68,16 @@ export function ExecutiveSummary({ report }: ExecutiveSummaryProps) {
                     </td>
                     <td className="px-4 py-3">
                       <div className="space-y-0.5">
-                        <p className="text-sm text-neutral-200 font-medium">
+                        <p className="text-sm text-slate-800 font-medium">
                           {rec.findingTitle}
                         </p>
                         <p className="text-xs text-muted">{rec.dimension}</p>
                       </div>
                     </td>
-                    <td className="px-4 py-3 text-xs text-neutral-400 hidden md:table-cell max-w-xs">
+                    <td className="px-4 py-3 text-xs text-slate-600 hidden md:table-cell max-w-xs">
                       {rec.action}
                     </td>
-                    <td className="px-4 py-3 text-xs text-neutral-400 hidden sm:table-cell">
+                    <td className="px-4 py-3 text-xs text-slate-600 hidden sm:table-cell">
                       {rec.suggestedOwner}
                     </td>
                     <td className="px-4 py-3">

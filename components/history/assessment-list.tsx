@@ -12,7 +12,7 @@ export function AssessmentList({ reports }: AssessmentListProps) {
   if (reports.length === 0) {
     return (
       <div className="rounded-lg border border-border bg-surface p-12 text-center space-y-3">
-        <p className="text-sm font-medium text-neutral-400">No assessments yet</p>
+        <p className="text-sm font-medium text-slate-600">No assessments yet</p>
         <p className="text-xs text-muted">
           Run your first AI system risk assessment to see results here.
         </p>
@@ -44,16 +44,16 @@ export function AssessmentList({ reports }: AssessmentListProps) {
               <tr key={row.id} className="hover:bg-surface transition-colors">
                 <td className="px-4 py-3.5">
                   <div className="space-y-0.5">
-                    <p className="font-medium text-neutral-200 leading-tight">
+                    <p className="font-medium text-slate-800 leading-tight">
                       {row.report_data.systemName}
                     </p>
                     <p className="text-xs text-muted sm:hidden">{row.report_data.vendor}</p>
                   </div>
                 </td>
-                <td className="px-4 py-3.5 text-neutral-400 hidden sm:table-cell">
+                <td className="px-4 py-3.5 text-slate-600 hidden sm:table-cell">
                   {row.report_data.vendor}
                 </td>
-                <td className="px-4 py-3.5 text-neutral-400 text-xs hidden md:table-cell">
+                <td className="px-4 py-3.5 text-slate-600 text-xs hidden md:table-cell">
                   {date}
                 </td>
                 <td className="px-4 py-3.5">

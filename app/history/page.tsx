@@ -22,7 +22,7 @@ export default async function HistoryPage() {
       <main className="max-w-4xl mx-auto px-4 sm:px-6 py-10 space-y-6">
         <div className="flex items-center justify-between">
           <div className="space-y-0.5">
-            <h1 className="text-lg font-semibold text-neutral-100">Assessments</h1>
+            <h1 className="text-lg font-semibold text-ink">Assessments</h1>
             <p className="text-sm text-muted">
               {reports?.length ?? 0} review{reports?.length !== 1 ? "s" : ""} in this workspace
             </p>

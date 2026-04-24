@@ -29,7 +29,7 @@ export function PersonaCard({ assessment, isActive }: PersonaCardProps) {
             <p className="text-xs font-medium text-muted uppercase tracking-wide truncate">
               {dimension}
             </p>
-            <p className="text-sm font-semibold text-neutral-100 leading-tight">
+            <p className="text-sm font-semibold text-ink leading-tight">
               {personaName}
             </p>
           </div>
@@ -49,7 +49,7 @@ export function PersonaCard({ assessment, isActive }: PersonaCardProps) {
 
         {/* Streaming narrative */}
         {(isActive || isComplete) && narrative && (
-          <div className="text-xs text-neutral-400 streaming-text max-h-48 overflow-y-auto border-t border-border pt-3 leading-relaxed">
+          <div className="text-xs text-slate-600 streaming-text max-h-48 overflow-y-auto border-t border-border pt-3 leading-relaxed">
             {narrative}
             {isActive && <span className="animate-blink ml-0.5">▋</span>}
           </div>
@@ -65,7 +65,7 @@ export function PersonaCard({ assessment, isActive }: PersonaCardProps) {
               {findings.slice(0, 3).map((f) => (
                 <div key={f.id} className="flex items-start gap-2">
                   <RiskBadge level={f.riskLevel} size="sm" />
-                  <p className="text-xs text-neutral-400 leading-tight">{f.title}</p>
+                  <p className="text-xs text-slate-600 leading-tight">{f.title}</p>
                 </div>
               ))}
               {findings.length > 3 && (

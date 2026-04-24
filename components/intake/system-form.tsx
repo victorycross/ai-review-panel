@@ -144,7 +144,7 @@ export function SystemForm() {
                     onChange={() => toggleDataType(type)}
                     className="rounded border-border bg-bg accent-accent"
                   />
-                  <span className="text-sm text-neutral-400 group-hover:text-neutral-300 transition-colors">
+                  <span className="text-sm text-slate-600 group-hover:text-slate-700 transition-colors">
                     {type}
                   </span>
                 </label>
@@ -318,7 +318,7 @@ function Toggle({
   onChange: (v: boolean) => void;
 }) {
   return (
-    <label className="flex items-start gap-3 cursor-pointer rounded-lg border border-border bg-surface p-3 hover:border-neutral-700 transition-colors">
+    <label className="flex items-start gap-3 cursor-pointer rounded-lg border border-border bg-surface p-3 hover:border-accent transition-colors">
       <button
         type="button"
         role="switch"
@@ -335,7 +335,7 @@ function Toggle({
         />
       </button>
       <div>
-        <p className="text-sm font-medium text-neutral-200">{label}</p>
+        <p className="text-sm font-medium text-slate-800">{label}</p>
         <p className="text-xs text-muted">{description}</p>
       </div>
     </label>
@@ -343,4 +343,4 @@ function Toggle({
 }
 
 const inputClass =
-  "w-full rounded-md border border-border bg-bg px-3 py-2 text-sm text-neutral-200 placeholder-muted focus:outline-none focus:ring-1 focus:ring-accent resize-none";
+  "w-full rounded-md border border-border bg-bg px-3 py-2 text-sm text-slate-800 placeholder-muted focus:outline-none focus:ring-1 focus:ring-accent resize-none";

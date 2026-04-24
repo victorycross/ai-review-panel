@@ -29,7 +29,7 @@ export function RiskMatrix({ report }: RiskMatrixProps) {
                     className="w-2 h-2 rounded-full shrink-0"
                     style={{ backgroundColor: color }}
                   />
-                  <span className="text-sm text-neutral-300 truncate">{dim}</span>
+                  <span className="text-sm text-slate-700 truncate">{dim}</span>
                   {findingCount > 0 && (
                     <span className="text-xs text-muted shrink-0">
                       {findingCount} finding{findingCount !== 1 ? "s" : ""}
@@ -44,7 +44,7 @@ export function RiskMatrix({ report }: RiskMatrixProps) {
 
         {/* Overall */}
         <div className="border-t-2 border-border bg-surface-2 p-3 flex items-center justify-between">
-          <span className="text-sm font-semibold text-neutral-100">Overall Risk</span>
+          <span className="text-sm font-semibold text-ink">Overall Risk</span>
           <RiskBadge level={report.overallRisk} size="lg" />
         </div>
       </div>
@@ -59,7 +59,7 @@ export function RiskMatrix({ report }: RiskMatrixProps) {
             {report.crossDimensionalIssues.map((issue, i) => (
               <li key={i} className="flex items-start gap-2">
                 <span className="text-muted mt-1">•</span>
-                <span className="text-sm text-neutral-400">{issue}</span>
+                <span className="text-sm text-slate-600">{issue}</span>
               </li>
             ))}
           </ul>

@@ -8,7 +8,7 @@ export default function LoginPage() {
           <p className="text-xs font-medium tracking-widest text-muted uppercase">
             BrightPath Technologies
           </p>
-          <h1 className="text-2xl font-semibold text-neutral-100 tracking-tight">
+          <h1 className="text-2xl font-semibold text-ink tracking-tight">
             techassist
           </h1>
           <p className="text-sm text-muted">AI System Review Panel</p>

@@ -18,7 +18,7 @@ export function ReportView({ report }: ReportViewProps) {
       <div className="flex items-center justify-between flex-wrap gap-3">
         <Link
           href="/history"
-          className="text-xs text-muted hover:text-neutral-300 transition-colors flex items-center gap-1"
+          className="text-xs text-muted hover:text-slate-700 transition-colors flex items-center gap-1"
         >
           ← All assessments
         </Link>
@@ -38,7 +38,7 @@ export function ReportView({ report }: ReportViewProps) {
             Cross-Dimensional Examination
           </h2>
           <div className="rounded-lg border border-border bg-surface p-5">
-            <p className="text-sm text-neutral-400 leading-relaxed whitespace-pre-wrap">
+            <p className="text-sm text-slate-600 leading-relaxed whitespace-pre-wrap">
               {report.examinationText}
             </p>
           </div>

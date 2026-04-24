@@ -39,7 +39,7 @@ export function FindingList({ assessments }: FindingListProps) {
                     className="w-2 h-2 rounded-full"
                     style={{ backgroundColor: color }}
                   />
-                  <span className="text-sm font-medium text-neutral-200">
+                  <span className="text-sm font-medium text-slate-800">
                     {assessment.dimension}
                   </span>
                   <span className="text-xs text-muted">
@@ -64,7 +64,7 @@ export function FindingList({ assessments }: FindingListProps) {
                       <p className="text-xs font-medium text-muted uppercase tracking-wide mb-2">
                         Assessment Narrative
                       </p>
-                      <p className="text-sm text-neutral-400 leading-relaxed streaming-text">
+                      <p className="text-sm text-slate-600 leading-relaxed streaming-text">
                         {assessment.narrative}
                       </p>
                     </div>
@@ -78,14 +78,14 @@ export function FindingList({ assessments }: FindingListProps) {
                           <span className="text-xs text-muted font-mono">
                             {i + 1}.
                           </span>
-                          <p className="text-sm font-medium text-neutral-200">
+                          <p className="text-sm font-medium text-slate-800">
                             {finding.title}
                           </p>
                         </div>
                         <RiskBadge level={finding.riskLevel} />
                       </div>
 
-                      <p className="text-sm text-neutral-400 leading-relaxed">
+                      <p className="text-sm text-slate-600 leading-relaxed">
                         {finding.description}
                       </p>
 
@@ -119,7 +119,7 @@ function DetailCell({ label, value }: { label: string; value: string }) {
   return (
     <div className="space-y-1">
       <p className="text-xs font-medium text-muted uppercase tracking-wide">{label}</p>
-      <p className="text-xs text-neutral-400 leading-relaxed">{value}</p>
+      <p className="text-xs text-slate-600 leading-relaxed">{value}</p>
     </div>
   );
 }

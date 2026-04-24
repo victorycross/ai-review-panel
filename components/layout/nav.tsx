@@ -29,15 +29,15 @@ export function Nav({ userEmail }: NavProps) {
     <nav className="border-b border-border bg-surface">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
         <div className="flex items-center gap-6">
-          <Link href="/history" className="flex items-center gap-2.5">
+          <Link href="/home" className="flex items-center gap-2.5">
             <div className="w-2 h-2 rounded-full bg-accent" />
-            <span className="font-semibold text-neutral-100 text-sm tracking-tight">
+            <span className="font-semibold text-ink text-sm tracking-tight">
               techassist
             </span>
           </Link>
           <Link
             href="/history"
-            className="text-sm text-muted hover:text-neutral-300 transition-colors"
+            className="text-sm text-muted hover:text-slate-700 transition-colors"
           >
             History
           </Link>
@@ -55,7 +55,7 @@ export function Nav({ userEmail }: NavProps) {
               <span className="text-xs text-muted hidden sm:block">{userEmail}</span>
               <button
                 onClick={handleSignOut}
-                className="text-xs text-muted hover:text-neutral-300 transition-colors"
+                className="text-xs text-muted hover:text-slate-700 transition-colors"
               >
                 Sign out
               </button>

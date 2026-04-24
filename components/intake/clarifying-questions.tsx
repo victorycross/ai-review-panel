@@ -40,7 +40,7 @@ export function ClarifyingQuestions() {
     <div className="space-y-6 animate-fade-in">
       <div className="flex items-center gap-3">
         <div className="w-1 h-5 rounded-full bg-accent" />
-        <h2 className="text-sm font-semibold text-neutral-100">Clarifying Questions</h2>
+        <h2 className="text-sm font-semibold text-ink">Clarifying Questions</h2>
         <p className="text-xs text-muted">Optional — answer what you can</p>
       </div>
 
@@ -77,13 +77,13 @@ export function ClarifyingQuestions() {
                     {q.dimension}
                   </span>
                 </div>
-                <p className="text-sm text-neutral-200">{q.question}</p>
+                <p className="text-sm text-slate-800">{q.question}</p>
                 <textarea
                   value={clarifyingAnswers[q.id] ?? ""}
                   onChange={(e) => setClarifyingAnswer(q.id, e.target.value)}
                   rows={2}
                   placeholder="Your answer (optional)…"
-                  className="w-full rounded-md border border-border bg-bg px-3 py-2 text-sm text-neutral-200 placeholder-muted focus:outline-none focus:ring-1 focus:ring-accent resize-none"
+                  className="w-full rounded-md border border-border bg-bg px-3 py-2 text-sm text-slate-800 placeholder-muted focus:outline-none focus:ring-1 focus:ring-accent resize-none"
                 />
               </div>
             );
