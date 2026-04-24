@@ -86,7 +86,7 @@ function runFullAssessment(
 
           const stream = anthropic.messages.stream({
             model: ASSESSMENT_MODEL,
-            max_tokens: 3000,
+            max_tokens: 6000,
             system: systemPrompt,
             messages: [{ role: "user", content: userMessage }],
           });
@@ -129,7 +129,7 @@ function runFullAssessment(
         let examinationText = "";
         const examinationStream = anthropic.messages.stream({
           model: ASSESSMENT_MODEL,
-          max_tokens: 2000,
+          max_tokens: 4000,
           system: buildExaminationSystemPrompt(),
           messages: [
             {
@@ -192,7 +192,7 @@ function runFullAssessment(
 
         const synthesisResponse = await anthropic.messages.create({
           model: ASSESSMENT_MODEL,
-          max_tokens: 3000,
+          max_tokens: 6000,
           messages: [{ role: "user", content: synthesisMessage }],
         });
 
